@@ -1,0 +1,110 @@
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --surface: #f4f5f7;
+  --border: #d5d8de;
+  --text: #1c2026;
+  --muted: #5d6570;
+  --accent: #0a7d6c;
+  --accent-text: #ffffff;
+  --danger: #b92f25;
+  --danger-surface: #fdeeec;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1e22;
+    --surface: #2a2d33;
+    --border: #41454d;
+    --text: #eceef1;
+    --muted: #a7adb6;
+    --accent: #2fbfa8;
+    --accent-text: #08231f;
+    --danger: #ff8a80;
+    --danger-surface: #3d2523;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.5 system-ui, "Segoe UI", "Malgun Gothic", sans-serif;
+}
+
+.hidden { display: none !important; }
+
+a { color: var(--accent); }
+
+button, .button {
+  display: inline-block;
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button.primary, button.primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+button:disabled { opacity: 0.6; cursor: default; }
+
+.muted { color: var(--muted); font-size: 13px; }
+
+.issue {
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: var(--danger-surface);
+  color: var(--danger);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+/* 적용 범위 선택 (팝업·설정 공통) */
+.scope-group {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.scope-group label {
+  flex: 1 1 auto;
+  padding: 7px 8px;
+  white-space: nowrap;
+  border-left: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 13px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.scope-group label:first-of-type { border-left: 0; }
+
+.scope-group input {
+  position: absolute;
+  opacity: 0;
+}
+
+.scope-group label:has(input:checked) {
+  background: var(--accent);
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+.scope-group label:has(input:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: -3px;
+}

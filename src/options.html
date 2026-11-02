@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GoodbyeDPI for Firefox 설정</title>
+    <link rel="stylesheet" href="ui.css">
+    <link rel="stylesheet" href="options.css">
+  </head>
+  <body>
+    <main>
+      <h1>GoodbyeDPI for Firefox</h1>
+
+      <section id="setup" class="card hidden">
+        <h2>처음 한 번만 준비하기</h2>
+        <p class="muted">확장 프로그램은 스스로 프로그램을 실행할 수 없어, 내장된 도우미를 한 번 설치해야 합니다. 인터넷에서 따로 받을 파일은 없습니다.</p>
+        <ol>
+          <li id="stepPrivate">
+            <strong>사생활 보호 창 실행 허용</strong>
+            <span class="step-state"></span>
+            <p class="muted step-help">Firefox 는 프록시 설정을 바꾸는 확장에 이 권한을 요구합니다. 주소창에 <code>about:addons</code> 를 입력하고 GoodbyeDPI for Firefox → 세부 정보에서 <em>사생활 보호 창에서 실행</em> 을 허용으로 바꾸세요.</p>
+          </li>
+          <li id="stepHelper">
+            <strong>도우미 설치</strong>
+            <span class="step-state"></span>
+            <div class="step-help">
+              <p class="muted">파일을 받아 한 번 실행하세요. 관리자 권한은 필요 없습니다. 서명되지 않은 프로그램이라 Windows 가 경고하면 <em>추가 정보 → 실행</em> 을 누르세요.</p>
+              <button id="download" type="button" class="primary">설치 파일 받기</button>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <form id="form">
+        <section class="card">
+          <h2>적용 범위</h2>
+          <fieldset class="scope-group">
+            <legend class="visually-hidden">적용 범위</legend>
+            <label><input type="radio" name="scope" value="all">전체</label>
+            <label><input type="radio" name="scope" value="include">특정 사이트만</label>
+            <label><input type="radio" name="scope" value="exclude">특정 사이트 제외</label>
+          </fieldset>
+          <p id="scopeAll" class="muted">모든 사이트에 우회를 적용합니다.</p>
+          <div id="includeBox">
+            <label for="includeDomains">우회를 적용할 사이트</label>
+            <textarea id="includeDomains" rows="7" spellcheck="false" placeholder="youtube.com&#10;googlevideo.com"></textarea>
+            <p class="muted">한 줄에 하나씩 적습니다. 하위 도메인도 함께 적용됩니다.</p>
+          </div>
+          <div id="excludeBox">
+            <label for="excludeDomains">우회하지 않을 사이트</label>
+            <textarea id="excludeDomains" rows="7" spellcheck="false" placeholder="naver.com&#10;kakao.com"></textarea>
+            <p class="muted">한 줄에 하나씩 적습니다. 하위 도메인도 함께 제외됩니다.</p>
+          </div>
+          <p id="invalid" class="issue hidden" role="alert"></p>
+        </section>
+
+        <section class="card">
+          <h2>우회 전략</h2>
+          <p class="muted">통신사와 사이트에 따라 잘 듣는 전략이 다릅니다. 막히면 다른 전략을 골라 보세요.</p>
+          <div id="strategies" class="strategies"></div>
+          <input id="customArgs" type="text" spellcheck="false" aria-label="직접 입력할 ciadpi 인수" placeholder="ciadpi 인수 (수신 주소와 포트는 자동으로 정해집니다)">
+        </section>
+
+        <div class="actions">
+          <button type="submit" class="primary">저장</button>
+          <span id="saved" class="muted" role="status"></span>
+        </div>
+      </form>
+
+      <section class="card">
+        <h2>현재 상태</h2>
+        <p id="runtime" class="muted">확인 중…</p>
+        <p id="issue" class="issue hidden" role="alert"></p>
+        <p class="muted">포트는 켤 때마다 비어 있는 번호로 자동 선택합니다. 도우미에 문제가 생기면 사이트는 우회 없이 직접 연결되고, 1분 안에 자동으로 복구를 시도합니다.</p>
+      </section>
+    </main>
+    <script src="scope.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

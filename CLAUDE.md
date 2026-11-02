@@ -2,6 +2,12 @@
 
 Firefox 플러그인. 플러그인 소스는 `src/` 에 두고, manifest 는 `src/manifest.json` 이다.
 
+## 도우미
+
+- `native-host/Host.cs` 를 고치면 `npm run build:host` 로 `src/native/` 의 실행 파일을 다시 만들어 함께 커밋한다
+- 메시지 규격을 바꾸면 `Host.cs` 의 `Protocol` 과 `src/background.js` 의 `HOST_PROTOCOL` 을 함께 올린다
+- 프록시·도우미 동작을 바꾸면 `npm test` 와 `npm run test:e2e` 로 검증한다
+
 ## 커밋 정책
 
 - 개발 작업을 완료하면 검증 후 사용자에게 묻지 않고 **commit 까지 수행**한다. **push 는 하지 않는다** (사용자가 직접 push). 사용자가 해당 작업에서 commit 하지 말라고 하면 그 요청을 따른다

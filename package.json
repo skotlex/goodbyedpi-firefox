@@ -1,11 +1,16 @@
 {
   "name": "goodbyedpi-firefox",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "description": "GoodbyeDPI Firefox add-on",
   "scripts": {
     "prepare": "git config core.hooksPath .githooks",
     "notes": "node scripts/changelog-to-json.js",
+    "build:host": "node scripts/build-host.js",
+    "test": "node --test tests/scope.test.js",
+    "test:e2e": "node tests/e2e-firefox.js",
+    "lint:ext": "npx web-ext@8 lint --source-dir src",
+    "package": "npx web-ext@8 build --source-dir src --artifacts-dir dist --overwrite-dest",
     "release:minor": "node scripts/changelog-to-json.js --release --minor",
     "release:major": "node scripts/changelog-to-json.js --release --major"
   }

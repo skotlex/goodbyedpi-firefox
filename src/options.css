@@ -1,0 +1,73 @@
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+h1 { margin: 0 0 16px; font-size: 20px; }
+
+h2 { margin: 0 0 10px; font-size: 15px; }
+
+.card {
+  margin-bottom: 16px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.card p { margin: 8px 0 0; }
+
+ol { margin: 12px 0 0; padding-left: 20px; }
+
+li { margin-bottom: 12px; }
+
+li:last-child { margin-bottom: 0; }
+
+.step-state { margin-left: 6px; color: var(--accent); font-size: 13px; font-weight: 600; }
+
+li.done .step-help { display: none; }
+
+.step-help button { margin-top: 8px; }
+
+code {
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: var(--surface);
+}
+
+#includeBox, #excludeBox { margin-top: 12px; }
+
+#includeBox label, #excludeBox label { display: block; margin-bottom: 4px; font-weight: 600; }
+
+textarea, input[type="text"] {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+  font: 13px/1.5 ui-monospace, Consolas, monospace;
+}
+
+textarea { resize: vertical; }
+
+.strategies { display: flex; flex-wrap: wrap; gap: 14px; margin: 10px 0; }
+
+.strategies label { cursor: pointer; }
+
+.strategies input { margin-right: 4px; }
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}

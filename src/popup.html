@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>GoodbyeDPI for Firefox</title>
+    <link rel="stylesheet" href="ui.css">
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main>
+      <header>
+        <img src="icons/icon.svg" width="24" height="24" alt="">
+        <h1>GoodbyeDPI</h1>
+        <button id="toggle" class="switch" role="switch" aria-checked="false" aria-label="우회 켜기">
+          <span class="knob"></span>
+        </button>
+      </header>
+
+      <p id="status" class="status" role="status">확인 중…</p>
+      <p id="issue" class="issue hidden" role="alert"></p>
+
+      <section id="setup" class="setup hidden">
+        <p>처음 한 번만 준비가 필요합니다.</p>
+        <button id="openSetup" class="primary">준비 화면 열기</button>
+      </section>
+
+      <section id="scopeSection">
+        <fieldset class="scope-group">
+          <legend class="visually-hidden">적용 범위</legend>
+          <label><input type="radio" name="scope" value="all">전체</label>
+          <label><input type="radio" name="scope" value="include">특정 사이트만</label>
+          <label><input type="radio" name="scope" value="exclude">특정 사이트 제외</label>
+        </fieldset>
+        <p id="scopeHint" class="muted"></p>
+      </section>
+
+      <footer>
+        <a id="openOptions" href="#">사이트 목록 · 설정</a>
+      </footer>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>
