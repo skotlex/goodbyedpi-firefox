@@ -37,7 +37,31 @@ Firefox 트래픽만 로컬 [ByeDPI](https://github.com/hufrea/byedpi)(`ciadpi`)
 서명은 [AMO API 키](https://addons.mozilla.org/developers/addon/api/key/)를 발급받아 실행합니다.
 
 ```
-npx web-ext@8 sign --source-dir src --channel unlisted --api-key <키> --api-secret <비밀값>
+npx web-ext@8 sign --source-dir src --artifacts-dir dist --channel unlisted --api-key <키> --api-secret <비밀값>
 ```
 
 `ciadpi.exe` 의 출처와 교체 방법은 [vendor/byedpi/SOURCE.md](vendor/byedpi/SOURCE.md) 에 있습니다.
+
+## Build instructions for add-on reviewers
+
+`src/native/GoodbyeDPI-Firefox-Setup.exe` is the only generated file in the package. Every other file in `src/` is hand-written and not minified.
+
+**Environment**
+
+- Windows 10 or 11, x64. The build does not run on Linux or macOS, because the compiler ships with Windows.
+- .NET Framework C# compiler, already present at `%WINDIR%\Microsoft.NET\Framework64\v4.0.30319\csc.exe`. Built with version 14.8.10001.0.
+- Node.js 24 to run the build script. No `npm install` is needed: the script has no dependencies.
+
+**Build**
+
+```
+node scripts/build-host.js
+```
+
+This compiles `native-host/Host.cs`, embeds `vendor/byedpi/ciadpi.exe` and `vendor/byedpi/LICENSE` as resources, and writes `src/native/GoodbyeDPI-Firefox-Setup.exe`.
+
+**The output is not byte-identical between builds.** This compiler has no deterministic build option. Two consecutive builds of the same source have the same size and differ in 48 bytes.
+
+**Third-party binary**
+
+`vendor/byedpi/ciadpi.exe` is unmodified from the official [ByeDPI v0.17.3 release](https://github.com/hufrea/byedpi/releases/tag/v0.17.3) (`byedpi-17.3-x86_64-w64.zip`). Its SHA-256 is `eb53ceeeb981cc6735ac24bb1e51e725280b86630e80fdf19ddc4ee4a5b54ef4`.
