@@ -1,0 +1,12 @@
+{
+  "name": "goodbyedpi-firefox",
+  "version": "0.0.0",
+  "private": true,
+  "description": "GoodbyeDPI Firefox add-on",
+  "scripts": {
+    "prepare": "git config core.hooksPath .githooks",
+    "notes": "node scripts/changelog-to-json.js",
+    "release:minor": "node scripts/changelog-to-json.js --release --minor",
+    "release:major": "node scripts/changelog-to-json.js --release --major"
+  }
+}

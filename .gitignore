@@ -1,0 +1,4 @@
+node_modules/
+
+# 커밋 시 changelog-to-json.js 가 CHANGELOG.md 에서 자동 생성
+release-notes.json
